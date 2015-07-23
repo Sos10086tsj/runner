@@ -13,4 +13,25 @@
   <name>runner-business</name>
   <url>http://maven.apache.org</url>
   
+  <dependencies>
+		<dependency>
+			<groupId>com.chinesedreamer</groupId>
+			<artifactId>runner-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- org json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
+		<!-- json lib -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+
+	</dependencies>
+	
 </project>

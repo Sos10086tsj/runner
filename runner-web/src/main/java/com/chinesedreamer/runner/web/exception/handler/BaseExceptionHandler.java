@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chinesedreamer.runner.web.security.exception.SessionOverdueException;
+
 /** 
  * Description: 统一处理异常
  * @author Paris Tao
@@ -23,7 +25,12 @@ public class BaseExceptionHandler implements HandlerExceptionResolver{
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
-		ModelAndView view = new ModelAndView("exception");
+		ModelAndView view = null;
+		if (ex instanceof SessionOverdueException) {
+			view = new ModelAndView("login");
+		}else {
+			view = new ModelAndView("exception/exception");
+		}
 		logger.error("{}",ex);
 		return view;
 	}
