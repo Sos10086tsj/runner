@@ -12,6 +12,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +33,8 @@ public class SessionFilter implements Filter{
 	private Logger logger = LoggerFactory.getLogger(SessionFilter.class);
 	private static final String[] ignoreUri = new String[]{".css",".js",".jpg",".png",".gif",".json",".ico"};
 	@Autowired
-	private UserSessionService userSessionService;
+	private @Getter @Setter UserSessionService userSessionService;
+	
 	private String sessionOverduePage = "login";
 
 	@Override

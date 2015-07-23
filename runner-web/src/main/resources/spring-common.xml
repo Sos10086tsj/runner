@@ -11,13 +11,7 @@
           http://www.springframework.org/schema/task 
           http://www.springframework.org/schema/task/spring-task-3.1.xsd   
           ">
-    <!-- session filter -->  
-	<bean id="sessionFilter" class="com.chinesedreamer.runner.web.filter.SessionFilter" >
-		<property name="userSessionService"> 
-			<ref bean="userSessionService"/>  
-    	</property>
-	</bean>
-	<bean id="userSessionService" class="com.chinesedreamer.runner.business.security.service.UserSessionServiceImpl"></bean>
+    
     
     <!-- property loader -->      
     <bean id="propertyConfigurer"  
@@ -34,5 +28,13 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<context:annotation-config />
+	
+	<!-- session filter -->  
+	<bean id="sessionFilter" class="com.chinesedreamer.runner.web.filter.SessionFilter" >
+		<property name="userSessionService"> 
+			<ref bean="userSessionService"/>  
+    	</property>
+	</bean>
+	<bean id="userSessionService" class="com.chinesedreamer.runner.web.security.service.UserSessionServiceImpl"></bean>
 
 </beans>

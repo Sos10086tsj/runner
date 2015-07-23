@@ -25,6 +25,10 @@ public class UserSessionLogicImpl extends BaseCacheAspect implements UserSession
 
 	private final String userSessionCacheName = "sessionCache";
 	private final String userSessionPrefix = "user-session-";
+	
+	public UserSessionLogicImpl() {
+		setCacheName(userSessionCacheName);
+	}
 
 	@Override
 	public void validateSession() throws SessionOverdueException {
