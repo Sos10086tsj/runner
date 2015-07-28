@@ -1,0 +1,22 @@
+CREATE SCHEMA IF NOT EXISTS `runner` DEFAULT CHARACTER SET utf8 ;
+
+DROP TABLE IF EXISTS `runner`.`sys_customer`;
+CREATE TABLE `runner`.`sys_customer` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '',
+  `code` VARCHAR(45) NULL COMMENT '',
+  `name` VARCHAR(255) NULL COMMENT '',
+  `create_date` TIMESTAMP NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `SYS_CUSTOMER_IDX_CODE` (`code` ASC)  COMMENT '');
+
+DROP TABLE IF EXISTS `runner`.`sys_user`;
+CREATE TABLE `runner`.`sys_user` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '',
+  `username` VARCHAR(45) NULL COMMENT '',
+  `password` VARCHAR(100) NULL COMMENT '',
+  `salt` VARCHAR(20) NULL COMMENT '',
+  `name` VARCHAR(255) NULL COMMENT '',
+  `status` INT NULL DEFAULT 0 COMMENT '',
+  `version` BIGINT(20) NULL DEFAULT 0 COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `SYS_USER_IDX_USERNAME` (`username` ASC)  COMMENT '');
