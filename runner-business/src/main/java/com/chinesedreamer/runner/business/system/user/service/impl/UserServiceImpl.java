@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.chinesedreamer.runner.business.system.user.constant.UserStatus;
 import com.chinesedreamer.runner.business.system.user.exception.UserExistException;
+import com.chinesedreamer.runner.business.system.user.exception.UserNotExistException;
+import com.chinesedreamer.runner.business.system.user.exception.UsernamePasswordIncorrectException;
 import com.chinesedreamer.runner.business.system.user.logic.UserLogic;
 import com.chinesedreamer.runner.business.system.user.model.User;
 import com.chinesedreamer.runner.business.system.user.service.UserService;
@@ -40,6 +42,20 @@ public class UserServiceImpl implements UserService{
 		user.setPassword(password);
 		user.setStatus(UserStatus.ACTIVE);
 		this.logic.save(user);
+	}
+
+	@Override
+	public void login(UserVo vo) throws UserNotExistException, UsernamePasswordIncorrectException{
+		//1. 检查用户是否存在
+		User exist = this.logic.findByUsername(vo.getUsername());
+		if (null == exist) {
+			throw new UserNotExistException("User not exist.");
+		}
+		//2. 检查用户名密码是否正确
+		String password = EncryptionUtil.md5L32(vo.getPassword() + exist.getSalt() + exist.getRegisterDate());
+		if (!password.equals(exist.getPassword())) {
+			throw new UsernamePasswordIncorrectException("Username or password not matched.");
+		}
 	}
 
 }

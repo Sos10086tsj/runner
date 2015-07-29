@@ -12,4 +12,5 @@ import com.chinesedreamer.runner.web.security.exception.SessionOverdueException;
 public interface UserSessionService {
 	public void validateSession() throws SessionOverdueException;
 	public UserSession getCurrentUserSession();
+	public void saveUserSessionCache(UserSession userSession);
 }

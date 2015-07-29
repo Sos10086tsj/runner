@@ -1,6 +1,8 @@
 package com.chinesedreamer.runner.business.system.user.service;
 
 import com.chinesedreamer.runner.business.system.user.exception.UserExistException;
+import com.chinesedreamer.runner.business.system.user.exception.UserNotExistException;
+import com.chinesedreamer.runner.business.system.user.exception.UsernamePasswordIncorrectException;
 import com.chinesedreamer.runner.business.system.user.vo.UserVo;
 
 /**
@@ -17,4 +19,12 @@ public interface UserService {
 	 * @throws UserExistException
 	 */
 	public void register(UserVo vo) throws UserExistException;
+	
+	/**
+	 * 用户登陆
+	 * @param vo
+	 * @throws UserNotExistException
+	 * @throws UsernamePasswordIncorrectException
+	 */
+	public void login(UserVo vo) throws UserNotExistException, UsernamePasswordIncorrectException;
 }

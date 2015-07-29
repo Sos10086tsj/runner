@@ -1,0 +1,12 @@
+<!--<link rel="icon" type="image/gif" href="${ctx }/resources/images/logo.ico">
+<link rel="stylesheet" type="text/css" href="${ctx }/resources/css/common.css">-->
+<!-- Extjs -->
+<link rel="stylesheet" type="text/css" href="${ctx }/resources/component/extjs4.2/resources/css/ext-all-neptune.css" />
+<script type="text/javascript" src="${ctx }/resources/component/extjs4.2/bootstrap.js"></script>
+<script type="text/javascript" src="${ctx }/resources/component/extjs4.2/locale/ext-lang-zh_CN.js"></script>
+
+<script type="text/javascript" src="${ctx }/resources/js/runner.js"></script>
+
+<script>
+	var ctx = '${ctx}';
+</script>

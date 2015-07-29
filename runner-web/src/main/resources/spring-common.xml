@@ -35,6 +35,6 @@
 			<ref bean="userSessionService"/>  
     	</property>
 	</bean>
-	<bean id="userSessionService" class="com.chinesedreamer.runner.web.security.service.UserSessionServiceImpl"></bean>
+	<bean id="userSessionService" class="com.chinesedreamer.runner.web.security.service.impl.UserSessionServiceImpl"></bean>
 
 </beans>
