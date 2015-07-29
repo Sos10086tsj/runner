@@ -20,3 +20,21 @@ CREATE TABLE `runner`.`sys_user` (
   `version` BIGINT(20) NULL DEFAULT 0 COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `SYS_USER_IDX_USERNAME` (`username` ASC)  COMMENT '');
+
+ALTER TABLE `runner`.`sys_user` 
+ADD COLUMN `cust_code` VARCHAR(45) NULL COMMENT '' AFTER `salt`;
+
+ALTER TABLE `runner`.`sys_user` 
+ADD INDEX `FK_SYS_USER_CUST_idx` (`cust_code` ASC)  COMMENT '';
+ALTER TABLE `runner`.`sys_user` 
+ADD CONSTRAINT `FK_SYS_USER_CUST`
+  FOREIGN KEY (`cust_code`)
+  REFERENCES `runner`.`sys_customer` (`code`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `runner`.`sys_user` 
+ADD COLUMN `register_date` TIMESTAMP NULL COMMENT '' AFTER `status`;
+
+ALTER TABLE `runner`.`sys_user` 
+ADD UNIQUE INDEX `SYS_USER_UN_USERNAME` (`username` ASC)  COMMENT '';

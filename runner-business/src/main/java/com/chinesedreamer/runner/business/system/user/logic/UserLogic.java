@@ -10,5 +10,10 @@ import com.chinesedreamer.runner.common.base.jpa.logic.BaseLogic;
 * @version 1.0
 */
 public interface UserLogic extends BaseLogic<User, Long>{
-
+	/**
+	 * 根据用户名查找用户
+	 * @param username
+	 * @return
+	 */
+	public User findByUsername(String username);
 }

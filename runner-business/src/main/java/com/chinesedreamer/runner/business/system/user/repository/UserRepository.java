@@ -10,5 +10,5 @@ import com.chinesedreamer.runner.common.base.jpa.repository.BaseRepository;
 * @version 1.0
 */
 public interface UserRepository extends BaseRepository<User, Long>{
-
+	public User findByUsername(String username);
 }
