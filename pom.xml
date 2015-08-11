@@ -413,5 +413,6 @@
 		<module>runner-common</module>
     <module>runner-business</module>
     <module>runner-web</module>
+    <module>runner-demo</module>
   </modules>
 </project>
