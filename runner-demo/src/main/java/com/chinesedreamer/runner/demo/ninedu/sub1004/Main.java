@@ -1,8 +1,5 @@
 package com.chinesedreamer.runner.demo.ninedu.sub1004;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 /**  
@@ -15,82 +12,59 @@ public class Main {
 	public static void main(String args[]) {
 		Scanner cin = new Scanner(System.in);
 		while (cin.hasNext()) {
-			int[] first = initList(cin.nextLine());
-			int[] second = initList(cin.nextLine());
-			int n1 = first[0];
-			int n2 = second[0];
-			if (n1 > 1000000 || n2 > 1000000) {
-				continue;
+			int first = cin.nextInt();
+			long[] f = new long[first];
+			for (int i = 0; i < first; i++) {
+				f[i] = cin.nextLong();
 			}
-			int median1 = median(first);
-			int median2 = median(second);
-			int medianValue1 = first[median1];
-			int medianValue2 = second[median2];
-			int min = 0;
-			int max = 0;
-			boolean bigger = true;
-			if (medianValue1 > medianValue2) {
-				min = medianValue2;
-				max = medianValue1;
-				bigger =false;
-			}else {
-				min = medianValue1;
-				max = medianValue2;
+			
+			int second = cin.nextInt();
+			long[] s = new long[second];
+			for (int i = 0; i < second; i++) {
+				s[i] = cin.nextLong();
 			}
-			List<Integer> s = new ArrayList<Integer>();
-			if (bigger) {
-				for (int i = median1; i < first.length; i++) {
-					if (first[i] <= max) {
-						s.add(first[i]);
-					}else {
-						break;
-					}
-				}
-				for (int i = 0; i <= median2; i++) {
-					if (second[i] >= min) {
-						s.add(second[i]);
-					}
-				}
-			}else {
-				for (int i = 0; i < median1; i++) {
-					if (first[i] >= min) {
-						s.add(first[i]);
-					}
-				}
-				for (int i = median2; i < second.length; i++) {
-					if (second[i] <= max) {
-						s.add(second[i]);
-					}else {
-						break;
-					}
-				}
-			}
-			Collections.sort(s);
-			if (s.size() % 2 == 0) {
-				System.out.println(s.get(s.size() / 2 - 1));
-			}else {
-				System.out.println(s.get(s.size() / 2));
-			}
+			
+			long[] merge = merge(f, s);
+			int mid = (merge.length - 1 ) / 2;
+			System.out.println(merge[mid]);
 		}
 		cin.close();
 	}
 
-	private static int[] initList(String line) {
-		String[] values = line.split(" ");
-		int[] list = new int[values.length];
-		for (int i = 0; i < values.length; i++) {
-			list[i] = Integer.valueOf(values[i]);
+	private static long[] merge(long[] f,long[] s) {
+		int length1 = f.length;
+		int length2 = s.length;
+		long[] merge = new long[length1 + length2];
+
+		int index1 = 0;
+		int index2 = 0;
+		int index = 0;
+		for (; index < length1 + length2; index++) {
+			
+			if (index1 == length1) {
+				for (; index2 < length2; index2++) {
+					merge[index] = s[index2];
+					index++;
+				}
+				continue;
+			}else if (index2 == length2) {
+				for (; index1 < length1; index1++) {
+					merge[index] = f[index1];
+					index++;
+				}
+				continue;
+			}
+			long fi = f[index1];
+			long si = s[index2];
+			if (fi >= si) {
+				merge[index] = si;
+				index2 ++;
+			}else {
+				merge[index] = fi;
+				index1 ++;
+			}
 		}
-		return list;
-	}
-	
-	private static int median(int[] values) {
-		int median = 0;
-		if ( (values.length - 1) % 2 == 0 ) {
-			median = (values.length - 1) / 2;
-		}else {
-			median = (values.length - 1) / 2 + 1;
-		}
-		return median;
+		
+		return merge;
 	}
 }

@@ -11,10 +11,20 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String args[]) {
 		Scanner cin = new Scanner(System.in);
-		StringBuffer buffer = new StringBuffer();
+		StringBuffer str = new StringBuffer();
 		while (cin.hasNext()) {
 			int n = cin.nextInt();
-			buffer.delete(0, buffer.length());
+			if (n == 0) {
+				System.out.println("NULL");
+				continue;
+			}
+			if (n < 0 || n > 1000) {
+				continue;
+			}
+			cin.nextLine();
+			str.delete(0, str.length());
+			str.append(cin.nextLine());
+			System.out.println(str.reverse());
 		}
 		cin.close();
 	}
